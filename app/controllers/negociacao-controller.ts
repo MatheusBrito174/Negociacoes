@@ -53,9 +53,9 @@ export class NegociacaoController {
     }
 
     private limparFormulario(): void {
-        this._data.value = null;
-        this._quantidade.value = null;
-        this._valor.value = null;
+        this._data.value = '';
+        this._quantidade.value = '';
+        this._valor.value = '';
 
         this._data.focus();
     }

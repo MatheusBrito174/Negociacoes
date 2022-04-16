@@ -2,7 +2,7 @@ export abstract class View<T> {
     private _elemento: HTMLElement;
 
     constructor(seletor: string) {
-        this._elemento = document.querySelector(seletor);
+        this._elemento = document.querySelector(seletor) as HTMLElement;
     }
 
     update(dados: T): void {
