@@ -1,5 +1,5 @@
-import { Negociacao } from "../models/Negociacao.js";
-import { Negociacoes } from "../models/Negociacoes.js";
+import { Negociacao } from "../models/negociacao.js";
+import { Negociacoes } from "../models/negociacoes.js";
 
 export class NegociacaoController {
     private _data: HTMLInputElement;
