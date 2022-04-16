@@ -1,3 +1,4 @@
+import { DiasDaSemana } from "../enums/DiasDaSemana.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
 import { MensagemView } from "../views/mensagem-view.js";
@@ -14,6 +15,10 @@ export class NegociacaoController {
     }
     adicionar() {
         const negociacao = this.criarNegociacao();
+        if (!this.ehDiaUtil(negociacao.data)) {
+            this._mensagemView.update('A data deve ser um dia entre segunda-feira e sexta-feira.');
+            return;
+        }
         this._negociacoes.adicionar(negociacao);
         this.limparFormulario();
         this.atualizarViews();
@@ -33,6 +38,10 @@ export class NegociacaoController {
         this._quantidade.value = null;
         this._valor.value = null;
         this._data.focus();
+    }
+    ehDiaUtil(data) {
+        return data.getDay() !== DiasDaSemana.SABADO &&
+            data.getDay() !== DiasDaSemana.DOMINGO;
     }
     atualizarViews() {
         this._negociacoesView.update(this._negociacoes);
