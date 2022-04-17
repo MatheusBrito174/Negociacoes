@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { injetarDoDom } from "../decorators/injetar-do-dom.js";
 import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { DiasDaSemana } from "../enums/DiasDaSemana.js";
 import { Negociacao } from "../models/negociacao.js";
@@ -12,9 +13,6 @@ import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
     constructor() {
-        this._data = document.getElementById('data');
-        this._quantidade = document.getElementById('quantidade');
-        this._valor = document.getElementById('valor');
         this._negociacoes = new Negociacoes();
         this._negociacoesView = new NegociacoesView('#negociacoes-view');
         this._mensagemView = new MensagemView('#mensagem-view');
@@ -48,6 +46,15 @@ export class NegociacaoController {
         this._mensagemView.update('Negociação adicionada.');
     }
 }
+__decorate([
+    injetarDoDom('#data')
+], NegociacaoController.prototype, "_data", void 0);
+__decorate([
+    injetarDoDom('#quantidade')
+], NegociacaoController.prototype, "_quantidade", void 0);
+__decorate([
+    injetarDoDom('#valor')
+], NegociacaoController.prototype, "_valor", void 0);
 __decorate([
     logarTempoDeExecucao(true)
 ], NegociacaoController.prototype, "atualizarViews", null);

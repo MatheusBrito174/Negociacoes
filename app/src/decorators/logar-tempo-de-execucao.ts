@@ -17,7 +17,11 @@ export function logarTempoDeExecucao(exibirEmSegundos: boolean = false) {
      *      se decorator aplicado em função => referência a essa função (no atributo value)
      *      se decorator aplicado em campo => não se aplcia
      */
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return function(
+        target: any,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+    ): PropertyDescriptor {
         const metodoOriginal = descriptor.value;
         descriptor.value = function(...args: any[]) {
             const t1 = performance.now();
