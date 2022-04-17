@@ -14,7 +14,7 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
     adicionar() {
-        const negociacao = this.criarNegociacao();
+        const negociacao = Negociacao.criarDe(this._data.value, this._quantidade.value, this._valor.value);
         if (!this.ehDiaUtil(negociacao.data)) {
             this._mensagemView.update('A data deve ser um dia entre segunda-feira e sexta-feira.');
             return;
@@ -25,13 +25,6 @@ export class NegociacaoController {
     }
     listarNegociacoes() {
         console.log(this._negociacoes.lista);
-    }
-    criarNegociacao() {
-        const dataValores = this._data.value.split('-').map(valor => parseInt(valor));
-        const data = new Date(dataValores[0], dataValores[1] - 1, dataValores[2]);
-        const quantidade = parseInt(this._quantidade.value);
-        const valor = parseFloat(this._valor.value);
-        return new Negociacao(data, quantidade, valor);
     }
     limparFormulario() {
         this._data.value = '';
