@@ -1,6 +1,6 @@
 export class Negociacoes {
-    constructor() {
-        this._lista = [];
+    constructor(negociacoes = []) {
+        this._lista = [...negociacoes];
     }
     get lista() {
         return this._lista;

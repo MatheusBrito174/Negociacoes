@@ -3,6 +3,7 @@ import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { DiasDaSemana } from "../enums/DiasDaSemana.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { NegociacoesService } from "../services/negociacoes-service.js";
 import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 
@@ -16,11 +17,14 @@ export class NegociacaoController {
     private readonly _negociacoes: Negociacoes;
     private readonly _negociacoesView: NegociacoesView;
     private readonly _mensagemView: MensagemView;
+    private readonly _negociacoesService: NegociacoesService;
 
     constructor() {
         this._negociacoes = new Negociacoes();
         this._negociacoesView = new NegociacoesView('#negociacoes-view');
-        this._mensagemView = new MensagemView('#mensagem-view',);
+        this._mensagemView = new MensagemView('#mensagem-view');
+
+        this._negociacoesService = new NegociacoesService();
 
         this._negociacoesView.update(this._negociacoes);
     }
@@ -41,6 +45,15 @@ export class NegociacaoController {
 
     listarNegociacoes(): void {
         console.log(this._negociacoes.lista);
+    }
+
+    importarNegociacoesDoDia() {
+        this._negociacoesService.buscarNegociacoesDoDia()
+            .then(negociacoes =>{
+                negociacoes.lista.forEach(negociacao => this._negociacoes.adicionar(negociacao));
+                this._negociacoesView.update(this._negociacoes);
+                this._mensagemView.update('Negociações do dia importadas.');
+            });
     }
 
     private limparFormulario(): void {

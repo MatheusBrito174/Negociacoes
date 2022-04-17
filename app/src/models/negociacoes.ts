@@ -1,7 +1,11 @@
 import { Negociacao } from "./negociacao.js";
 
 export class Negociacoes {
-    private readonly _lista: Negociacao[] = [];
+    private readonly _lista: Negociacao[];
+
+    constructor(negociacoes: Negociacao[] = []) {
+        this._lista = [...negociacoes];
+    }
 
     get lista(): readonly Negociacao[] {
         return this._lista;

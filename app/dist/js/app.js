@@ -11,3 +11,5 @@ if (form) {
 else {
     alert('Não foi possível iniciar aplicação. Verifique se o elemento com classe \'form\' existe.');
 }
+const botaoImportar = document.getElementById('botao-importar');
+botaoImportar.addEventListener('click', () => controller.importarNegociacoesDoDia());
