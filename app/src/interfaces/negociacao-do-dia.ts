@@ -1,4 +1,4 @@
-export interface NegociacoesDoDia {
+export interface NegociacaoDoDia {
     montante: number;
     vezes: number;
 }
