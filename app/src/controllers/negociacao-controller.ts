@@ -1,3 +1,4 @@
+import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { DiasDaSemana } from "../enums/DiasDaSemana.js";
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
@@ -55,6 +56,7 @@ export class NegociacaoController {
                data.getDay() !== DiasDaSemana.DOMINGO;
     }
 
+    @logarTempoDeExecucao(true)
     private atualizarViews():void {
         this._negociacoesView.update(this._negociacoes);
         this._mensagemView.update('Negociação adicionada.');
